@@ -19,15 +19,11 @@ verifyTruthTable(norANN, [1,0,0,0], '~||');
 
 console.log('*****************************************************************************');
 
-// Example Training
+// Example of a network in training
+
 var ann = new ThinqNeuralNet(new ThinqNeuronLayer('input',2),
     new ThinqNeuronLayer('hidden', 3, 'tanh'),
     new ThinqNeuronLayer('output', 1, 'sigmoid'));
-
-// Eftersom nätverken initialiseras med slumpvärden så är det inte alltid
-// träningen ger meningsfulla resultat- utan kan behöva köras om
-//
-// Det är så det fungerar... ingen exakt vetenskap.
 
 console.log('Training sample XOR net',ann);
 var j = 0;
@@ -42,4 +38,6 @@ for(var i=0;i<500;i++)
 console.log('Total train time ' + (ann.totalTime/1000) + ' seconds');
 console.log('Testing trained network')
 verifyTruthTable(ann, [0,1,1,0], 'Xor')
+
+// Finally export the trained network
 console.log('Export: ', JSON.stringify(ann.saveANN()));
